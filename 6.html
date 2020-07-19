@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript" src="./js/vue.js">
+
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <hello-world :class="{isActive}"></hello-world>
+  </div>
+</body>
+<script>
+  Vue.component("helloWorld", {
+    template: '<div class="red">12345</div>'
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      isActive: true
+    }
+  })
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1 :style="[styleObject,otherStyle]">hello world</h1>
+    <ul :style="{display:['flex']}">
+        <li-item v-for="item in list" :todo="item" :key="item.key" :style="{'flex':1}"></li-item>
+    </ul>
+</div>
+</body>
+<script>
+    Vue.component("li-item",{
+        props:['todo'],
+        template:'<li>{{todo.name}}</li>'
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            styleObject: {
+                color: 'red',
+                fontSize: '105px'
+            },
+            otherStyle:{
+                padding:'100px'
+            },
+            list:[
+                {id:1,name:"zhang"},
+                {id:1,name:"chen"},
+                {id:1,name:"song"}
+            ]
+        }
+    })
+</script>
+</html>

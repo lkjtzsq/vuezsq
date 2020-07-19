@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" :key="username-input">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" :key="email-input">
+    </template>
+    <button @click="toggleLoginType">toggle login type</button>
+    <hr>
+    <div v-show="show2">12</div>
+    <button @click="changeShow2">显示/隐藏</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            loginType:'username',
+            a:'',
+            b:'',
+            show2:true
+        },
+        methods:{
+            toggleLoginType(){
+                if(this.loginType=='username'){
+                    this.loginType='email'
+                }else{
+                    this.loginType='username'
+                }
+            },
+            changeShow2(){
+                this.show2=!this.show2
+            }
+        }
+    })
+</script>
+</html>
