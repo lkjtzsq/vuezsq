@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(item,index) in newList" :key="index">{{item}}</li>
+    </ul>
+    <ul v-for="items in arr">
+        <li v-for="item in getNewArr(items)">{{item}}</li>
+    </ul>
+    <ul>
+        <li v-for="n in 10">{{n}}</li>
+    </ul>
+    <ul>
+        <template v-for="n in 10">
+            <li>{{n}}</li>
+            <li>哈哈哈</li>
+        </template>
+    </ul>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[1,2,3,4,5,6,7,8,9,10],
+            arr:[[1,2,3,4,5],[6,7,8,9,10]]
+        },
+        computed:{
+            newList(){
+                return this.list.filter(function(value){
+                    return value%2==0
+                })
+            }
+        },
+        methods:{
+            getNewArr(value){
+                return value.filter(function(res){
+                    return res%2==0
+                })
+            }
+        }
+    })
+</script>
+</html>
