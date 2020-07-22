@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue修饰符</title>
+</head>
+<body>
+<div id="app">
+    <div style="border: 1px solid #ccc;padding: 50px;background: yellow;" @click="parentEvent">
+        <button @click="childrenEvent">测试</button>
+    </div>
+    <a href="http://www.baidu.com" @click.prevent>百度</a>
+    <hr>
+    <input type="text" @click.ctrl.exact="show">
+    <div style="height:300px;border:1px solid #ddd;overflow: scroll;" @scroll="scrollEvent">
+        <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores autem et excepturi praesentium recusandae, soluta temporibus unde voluptates? Consequuntur exercitationem numquam quam quidem quis rem repellat reprehenderit sequi!</li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            value:""
+        },
+        methods:{
+            childrenEvent(){
+                alert("触发子级事件")
+            },
+            parentEvent(){
+                alert("触发父级事件")
+            },
+            show(){
+                alert("弹出！")
+            },
+            scrollEvent(){
+                console.log(1)
+            }
+        }
+    })
+    console.log(Vue.config.keyCodes)
+</script>
+</html>

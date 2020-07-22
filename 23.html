@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" :value="val" @input="val=$event.target.value">
+    <hr>
+    <costume-input v-model="value"></costume-input>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("costume-input",{
+        props:['value'],
+        template:`<input type="text" :value="value" @input="$emit('input',$event.target.value)">`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            value:"",
+            val:"11"
+        },
+        methods:{
+            testInput(a,b){
+                console.log(a,b)
+            }
+        }
+    })
+</script>
+</html>

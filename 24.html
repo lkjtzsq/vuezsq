@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <test-slot title="你麻蛋阿">
+        为了我们更好的名头
+    </test-slot>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("test-slot",{
+        props:['title'],
+        template:`<div><p>hello world</p><p><slot></slot></p></div>`
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>
+</html>

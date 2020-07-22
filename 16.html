@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button id="mybtn" @click="show('hello world',$event)">点击</button>
+    <div>{{value}}</div>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+          value:1
+        },
+        methods:{
+            show(msg,event){
+                if(event){
+                    event.preventDefault()
+                }
+                console.log(event)
+                console.log(msg)
+            }
+        }
+    })
+</script>
+</html>

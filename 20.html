@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue组件复用</title>
+</head>
+<body>
+<div id="app">
+    <my-tag></my-tag>
+    <my-tag></my-tag>
+    <my-tag></my-tag>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("my-tag",{
+        data:function(){
+            return {
+                num:1
+            }
+        },
+        template:`<div>{{num}}<button @click="num++">点击阿</button></div>`
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>
+</html>
