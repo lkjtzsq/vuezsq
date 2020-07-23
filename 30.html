@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prop 验证</title>
+</head>
+<body>
+<div id="app">
+    <todo-item title-a="134" propF="zhang"></todo-item>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item", {
+        props: {
+            titleA:{
+                type:String,
+                required:false
+            },
+            content:[String,Number],
+            article:{
+                type:String,
+                default:'hhhhhh'
+            },
+            nobody:{
+                type:Object,
+                default: function(){
+                    return {
+                        message:"eeeeefdfddfa",
+                        age:"fdfdfd"
+                    }
+                }
+            },
+            propF:{
+                validator:function(val){
+                    return ['zhang','shao','qiang'].indexOf(val)!==-1
+                }
+            }
+        },
+        template: `<p>{{titleA}}{{article}}<span>{{nobody.message}}</span></p>`
+    })
+    var app = new Vue({
+        el: "#app"
+    })
+</script>
+</html>

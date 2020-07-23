@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <todo-item v-bind="myobj"></todo-item>
+
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        props:{
+            title:String,
+            content:String
+        },
+        template:`<p>{{title}}{{content}}</p>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            myobj:{
+                title:"hello world",
+                content:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam deleniti, error est, excepturi, qui quibusdam ratione recusandae repellendus reprehenderit similique vero voluptatem? Accusantium adipisci eaque nemo nesciunt nisi quidem, tenetur."
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单向下行绑定</title>
+</head>
+<body>
+<div id="app">
+    <todo-item :title="num"></todo-item>
+    <div>{{num}}</div>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        props:['title'],
+        data:function(){
+          return {
+              message:this.title
+          }
+        },
+        created(){
+          this.title="hello world"
+        },
+        template:`<p>{{message}}</p>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            num:134
+        }
+    })
+</script>
+</html>

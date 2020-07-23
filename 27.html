@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局组件嵌套</title>
+</head>
+<body>
+<div id="app">
+    <component-a>
+        <component-b v-for="(item,index) in contentList" :key="index" :content="item"></component-b>
+    </component-a>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("component-a",{
+        template:`<ul><slot></slot></ul>`
+    })
+    Vue.component("component-b",{
+        props:['content'],
+        template:`<li>{{content}}</li>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            contentList:["hello","world","beijing"]
+        }
+    })
+</script>
+</html>

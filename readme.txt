@@ -1,1 +1,1 @@
-https://cn.vuejs.org/v2/guide/components-registration.html
+https://cn.vuejs.org/v2/guide/components-custom-events.html#%E4%BA%8B%E4%BB%B6%E5%90%8D
