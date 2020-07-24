@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义组件的 v-model</title>
+</head>
+<body>
+<div id="app">
+    <todo-item v-model="todoValue"></todo-item>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        model:{
+            prop:"checked",
+            event:"change"
+        },
+        props:{
+            checked:Boolean
+        },
+        template:`<p><label><input type="checkbox" v-bind:value="checked" @change="$emit('change',$event.target.checked)">D选项1</label></p>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            todoValue:false
+        }
+    })
+</script>
+</html>

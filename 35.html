@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插槽</title>
+</head>
+<body>
+<div id="app">
+    <todo-item>hello world</todo-item>
+    <mycontent>
+        <template v-slot:header>
+            <span>标题占位符</span>
+        </template>
+        <template v-slot:content>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A asperiores, delectus et excepturi laboriosam maiores maxime nihil nostrum numquam quaerat sapiente, vitae. Est magni numquam porro repellendus, rerum sit vero.</span>
+        </template>
+        <template v-slot:footer>
+            <span>底部占位符</span>
+        </template>
+    </mycontent>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("mycontent",{
+        template:`<div>
+            <p><slot name="header"></slot></p>
+            <p><slot name="content"></slot></p>
+            <p><slot name="footer"></slot></p>
+
+</div>`
+    })
+    Vue.component("todo-item",{
+        template:`<button type="submit"><slot>submit</slot></button>`
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>
+</html>
