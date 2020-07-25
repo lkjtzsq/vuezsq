@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div :style="{fontSize:fs+'em'}">
+        <blog-post title="hello world" @addfont="fs+=$event"></blog-post>
+    </div>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("blog-post",{
+        props:['title'],
+        template:`<div><p>{{title}}</p><button @click="$emit('addfont',0.1)">放大</button></div>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            fs:1
+        },
+        methods:{
+            addFont(event){
+                console.log(event)
+                this.fs+=event
+            }
+        }
+    })
+</script>
+</html>

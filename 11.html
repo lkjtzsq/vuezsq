@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./js/vue.js">
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(item,index) in newList" :key="index">{{item.message}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(value,key,index) in arr">{{index}}/{{key}}/{{value}}</li>
+    </ul>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {message:"zhang"},
+                {message:"shao"},
+                {message:"qiang"}
+            ],
+            arr:{
+                id:1,
+                name:"peter",
+                addr:"beijing"
+            }
+        },
+        computed:{
+            newList(){
+                return this.list.filter(function(value){
+                    return value.message.match(/shao/)
+                })
+            }
+        }
+    })
+</script>
+</html>

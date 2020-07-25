@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <form @submit.prevent="addItem">
+        <input type="text" v-model="newValue">
+        <button>添加</button>
+    </form>
+    <ul>
+        <li v-for="(item,index) in list" :key="index">{{item}}<button @click="deleteItem(index)">删除</button></li>
+    </ul>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            newValue:"",
+            list:[1,2,3,4,5]
+        },
+        methods:{
+            addItem(){
+                this.list.push(this.newValue)
+                this.newValue=""
+            },
+            deleteItem(index){
+                this.list.splice(index,1)
+            }
+        }
+    })
+</script>
+</html>

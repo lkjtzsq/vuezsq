@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <label for="check1">中国</label>
+    <input id="check1" type="checkbox" v-model="checkboxArr" value="1">
+    <label for="check2">美国</label>
+    <input id="check2" type="checkbox" v-model="checkboxArr" value="2">
+    <label for="check3">英国</label>
+    <input id="check3" type="checkbox" v-model="checkboxArr" value="3">
+    <br>
+    <p><input type="radio" id="radio1" v-model="province" value="r1"><label for="radio1">黑龙江省</label></p>
+    <p><input type="radio" id="radio2" v-model="province" value="r2"><label for="radio2">吉林省</label></p>
+    <p><input type="radio" id="radio3" v-model="province" value="r3"><label for="radio3">辽宁省</label></p>
+    <hr>
+    <select name="" id="" v-model="selectValue" multiple>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+    </select>
+    <hr>
+    <select v-model="selected">
+        <option v-for="(option,index) in options" :key="index" :value="option.value">{{option.text}}</option>
+    </select>
+    <hr>
+    <input
+            type="checkbox"
+            v-model="toggle">
+    <hr>
+    <select v-model="sel">
+        <option value="{a:1}">的地方</option>
+        <option value="{a:3}">fddf的fddf地方</option>
+    </select>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            checkboxArr:[],
+            province:"",
+            selectValue:[],
+            selected:"A",
+            options:[
+                {text:"A",value:"A"},
+                {text:"B",value:"B"},
+                {text:"C",value:"C"}
+            ],
+            toggle:true,
+            sel:""
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件切换</title>
+    <style>
+        *{margin:0;padding:0;}
+        ul,ol{list-style-type: none;}
+        .toggle-head{display: flex;}
+        .toggle-head li{flex: 1;text-align: center;height:50px;line-height: 50px;background: #ccc;color:#fff;border: 1px solid blue;}
+        .toggle-head li.current{background: blue;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul class="toggle-head">
+            <li v-for="(item,index) in list" :class="{current:index===curIndex}" @click="curIndex=index">{{item}}</li>
+        </ul>
+        <div>
+            <component :is="'tag-'+list[curIndex]"></component>
+        </div>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("tag-home",{
+        template:`<p>home - welcome to home.</p>`
+    })
+    Vue.component("tag-index",{
+        template:`<p>index - welcome to index.</p>`
+    })
+    Vue.component("tag-end",{
+        template:`<p>end - welcome to end.</p>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            curIndex:0,
+            list:["home","index","end"]
+        }
+    })
+</script>
+</html>

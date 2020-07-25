@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>玩懂Vue作用域插槽</title>
+</head>
+<body>
+
+<!--作用域插槽无非就是父组件访问子组件中的数据，
+通过设置子组件插槽名称slotProps（相当于指向子组件实例本身），
+然后通过slotProps.objectName来访问子组件中数据，
+暂时没想到这种功能的用处所在。
+-->
+
+<div id="app">
+    <todo-item>
+        <template v-slot:header="headerSlot">{{headerSlot.user.firstName}}</template>
+        <template v-slot:footer="footerSlot">{{footerSlot.user.lastName}}</template>
+    </todo-item>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        template:`<div>
+            <p><slot name="header" v-bind:user="user">{{user.lastName}}</slot></p>
+            <p><slot name="footer" v-bind:user="user">{{user.firstName}}</slot></p>
+        </div>`,
+        data:function(){
+            return {
+                user:{
+                    firstName:"zhang",
+                    lastName:"shaoqiang"
+                }
+            }
+        }
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>
+</html>

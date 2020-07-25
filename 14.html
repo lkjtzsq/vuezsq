@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <form @submit.prevent="addItem">
+        <input type="text" v-model="newTodoText">
+        <button>提交</button>
+    </form>
+    <ul>
+        <li is="todo-item" v-for="(item,index) in todoList" :todo="item" :key="index" @delete="deleteItem(index)"></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item", {
+        props:['todo'],
+        template:`<li>{{todo}}<button @click="$emit('delete')">删除</button></li>`
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            newTodoText: "",
+            todoList:['hello','world','zhangshaoqiang']
+        },
+        methods: {
+            deleteItem(index){
+                this.todoList.splice(index,1)
+            },
+            addItem(){
+                this.todoList.push(this.newTodoText)
+                this.newTodoText=""
+            }
+        }
+    })
+</script>

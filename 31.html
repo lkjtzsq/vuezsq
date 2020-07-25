@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类型检查</title>
+</head>
+<body>
+<div id="app">
+    <blog-post :author="setPerson(1,2)"></blog-post>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    function Person (firstName, lastName) {
+        this.firstName = firstName
+        this.lastName = lastName
+    }
+    Vue.component('blog-post', {
+        props: {
+            author: Person
+        },
+        template:`<p>{{author.firstName}}</p>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods:{
+            setPerson(a,b){
+                return new Person(a,b)
+            }
+        }
+    })
+</script>
+</html>

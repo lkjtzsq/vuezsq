@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承属性inheritAttrs</title>
+</head>
+<body>
+<div id="app">
+    <parent-node name="zhangshaoqiang" age="28" addr="heilongjiang" type="text"></parent-node>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("parent-node",{
+        inheritAttrs:false,
+        props:['name'],
+        template:`
+            <children-node v-bind="$attrs" :name="name"></children-node>
+     `
+    })
+    Vue.component("children-node",{
+        template:`<div><input type="number" placeholder="吹牛逼呢">{{$attrs.type}}</div>`
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>
+</html>
