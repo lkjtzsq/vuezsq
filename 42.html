@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内联模板</title>
+</head>
+<body>
+<div id="app">
+    <my-component inline-template>
+        <p>nihao</p>
+    </my-component>
+</div>
+
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("my-component",{
+        props:[],
+        template:`<div class="container">hello world</div>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>
