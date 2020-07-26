@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初始渲染的过渡</title>
+    <script src="./js/vue.js"></script>
+</head>
+<style>
+
+    .custom-appear{
+        color:red;
+        font-size: 14px;
+    }
+    .custom-appear-active{
+        transition:all 5s;
+        color:yellow;
+        font-size: 19px;
+    }
+    .custom-appear-to{
+        color:green;
+        font-size: 39px;
+    }
+</style>
+<body>
+<div id="app">
+    <transition
+            appear
+            appear-class="custom-appear"
+            appear-to-class="custom-appear-to"
+            appear-active-class="custom-appear-active"
+    >
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, nisi possimus praesentium reiciendis rerum vero voluptatibus! Atque ducimus exercitationem nemo, porro qui quod suscipit temporibus! Accusamus aperiam beatae commodi ullam!</p>
+    </transition>
+</div>
+<script>
+    new Vue({
+        el: "#app"
+    })
+</script>
+</body>
+</html>

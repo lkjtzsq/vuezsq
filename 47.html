@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件递归调用</title>
+</head>
+<body>
+<div id="app">
+    <parent-node :list="list"></parent-node>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("parent-node", {
+        props: ['list'],
+        template: `
+            <div><span v-if="list.name">{{list.name}}</span>
+                <child-node v-if="list.children" :children="list.children"></child-node>
+            </div>
+        `
+    })
+    Vue.component("child-node", {
+        props: ['children'],
+        template: `
+            <div>
+                <ul v-if="children.length">
+                    <li v-for="(item,index) in children">
+                        <parent-node :list="item"></parent-node>
+                    </li>
+                </ul>
+                <span v-else>{{children.name}}</span>
+            </div>
+        `
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            list: {
+                name: "fdkjfddf",
+                children: [{name: "fdfdfd", children: [{name:"vcaff",children:[{name:"fddfafddf",children:[]}]},{name:"vcaff",children:[]},{name:"vcaff",children:[]}]},{name: "fdfdfd", children: [{name:"vcaff",children:[]}]}]
+            }
+        }
+    })
+</script>
+</body>
+</html>

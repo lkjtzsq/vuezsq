@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+</head>
+<body>
+<div id="app">
+    <button @click="show=!show">vue test</button>
+    <transition leave-active-class="animated tada" enter-active-class="animated bounceOutRight" :duration="{enter:1000,leave:5000}">
+        <div v-if="show" type="transition" @transitionend="watchTransition" @animationend="watchAnimation">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam at atque, consequatur dignissimos explicabo facilis fuga incidunt ipsa iste labore magni minus nam natus provident, sapiente, tenetur vero voluptatibus.</div>
+    </transition>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            show:true
+        },
+        methods:{
+            watchTransition(){
+                console.log(1)
+            },
+            watchAnimation(){
+                console.log(2)
+            }
+        }
+    })
+</script>
+</body>
+</html>

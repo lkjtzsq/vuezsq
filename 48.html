@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三元运算符与switch语句</title>
+</head>
+<body>
+<div id="app">
+    <label>
+        <span>中国</span>
+        <input type="radio" v-model="buttonShow" value="china">
+    </label>
+    <label>
+        <span>美国</span>
+        <input type="radio" v-model="buttonShow" value="us">
+    </label>
+    <label>
+        <span>赢过</span>
+        <input type="radio" v-model="buttonShow" value="uk">
+    </label>
+    <hr>
+    <button :key="buttonShow">{{buttonName}}</button>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            buttonShow: "china"
+        },
+        computed: {
+            buttonName() {
+                switch (this.buttonShow) {
+                    case "china":
+                        return "中国"
+                        break
+                    case "us":
+                        return "美国"
+                        break
+                    case "uk":
+                        return "英国"
+                        break
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
