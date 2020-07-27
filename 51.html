@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        label {
+            display: block;
+        }
+        .demo-enter,.demo-leave-to{
+            opacity: 0;
+        }
+        .demo-enter-active,.demo-leave-active{
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <label>
+        <span>显示A</span>
+        <input type="radio" v-model="tagVal" value="v-a">
+    </label>
+    <label>
+        <span>显示B</span>
+        <input type="radio" v-model="tagVal" value="v-b">
+    </label>
+    <transition name="demo" mode="out-in">
+        <component :is="tagVal"></component>
+    </transition>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("v-a", {
+        template: `<p>this is A panel.</p>`
+    })
+    Vue.component("v-b", {
+        template: `<p>this is B panel.</p>`
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            tagVal: "v-a"
+        }
+    })
+</script>
+</html>

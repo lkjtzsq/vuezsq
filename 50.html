@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn{
+            position: absolute;
+            left:50px;
+            top:50px;
+        }
+        .demo-enter,.demo-leave-to{
+            opacity: 0;
+        }
+        .demo-enter{
+            transform: translateX(20px);
+
+        }
+        .demo-leave-to{
+            transform: translateX(-20px);
+        }
+
+        .demo-enter-active,.demo-leave-active{
+            transition: all 1s;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+<button @click="show=!show">test</button>
+    <hr>
+<transition name="demo">
+    <button :key="show?'on':'off'" class="btn">{{show?'on':'off'}}</button>
+</transition>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            show:true
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item{
+            margin-right: 10px;
+            display: inline-block;
+        }
+        .demo-enter,.demo-leave-to{
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        .demo-enter-active,.demo-leave-active{
+            transition: all .5s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="addNum">add</button>
+    <button @click="deleteNum">delete</button>
+    <transition-group name="demo" tag="p">
+        <span class="item" v-for="num in nums" :key="'num'+num">{{num}}</span>
+    </transition-group>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            nums:[1,2,3,4,5,6,7,8,9],
+            nextNum:10
+        },
+        methods:{
+            addNum(){
+                this.nums.splice(this.getRandom(),0,this.nextNum++)
+            },
+            deleteNum(){
+                this.nums.splice(this.getRandom(),1)
+            },
+            getRandom(){
+                var random = Math.floor(Math.random()*this.nums.length)
+                return random
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo-move {
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="shuffle">打乱</button>
+    <transition-group tag="ul" name="demo">
+        <li v-for="item in list" :key="item">{{item}}</li>
+    </transition-group>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[1,2,3,4,5,6,7,8,9,10]
+        },
+        methods:{
+            shuffle(){
+                this.list=_.shuffle(this.list)
+            }
+        }
+    })
+</script>
+</html>

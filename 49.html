@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态显示button按钮</title>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <label>
+        <span>中国</span>
+        <input type="radio" v-model="countryName" value="china">
+    </label>
+    <label>
+        <span>美国</span>
+        <input type="radio" v-model="countryName" value="us">
+    </label>
+    <label>
+        <span>英国</span>
+        <input type="radio" v-model="countryName" value="uk">
+    </label>
+    <button :key="countryName">{{getBtnName}}</button>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            countryName:"china"
+        },
+        computed:{
+            getBtnName(){
+                switch (this.countryName) {
+                    case "china":
+                        return "中国"
+                    case "us":
+                        return "美国"
+                    case "uk":
+                        return "英国"
+                }
+            }
+        },
+        created(){
+          alert("I have got it!")
+        }
+    })
+</script>
+</html>
