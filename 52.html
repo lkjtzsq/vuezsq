@@ -7,13 +7,14 @@
         .item{
             margin-right: 10px;
             display: inline-block;
+            transition: all 1s;
         }
         .demo-enter,.demo-leave-to{
             transform: translateY(50px);
             opacity: 0;
         }
-        .demo-enter-active,.demo-leave-active{
-            transition: all .5s;
+        .demo-leave-active{
+            position: absolute;
         }
     </style>
 </head>

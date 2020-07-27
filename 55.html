@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style-type:none;
+            display: flex;
+            width: 237px;
+            flex-wrap: wrap;
+        }
+        ul li {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            border: 1px solid #fff;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            background: #00a7f5;
+            color:#fff;
+        }
+        .item:nth-child(3n){
+            margin-right: 0;
+        }
+        .item:nth-child(27n){
+            margin-bottom: 0;
+        }
+        .demo-move{transition: all 1s;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="shuffle">打乱</button>
+    <transition-group name="demo" tag="ul">
+        <li v-for="item in list" :key="item.key" class="item">{{item.value}}</li>
+    </transition-group>
+</div>
+<script src="./js/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:Array.apply(null,{length:81}).map(function(_,key){
+                return {
+                    key:key,
+                    value:key%9+1
+                }
+            })
+        },
+        methods:{
+            shuffle(){
+                this.list=_.shuffle(this.list)
+            }
+        }
+    })
+</script>
+</body>
+</html>
