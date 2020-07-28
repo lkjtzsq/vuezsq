@@ -2,33 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>动画组件封装</title>
+    <title>过渡组件封装</title>
+    <style>
+        .demo-enter,.demo-leave-to{
+            opacity: 0;
+        }
+        .demo-enter-active,.demo-leave-active{
+            transition: all 1s;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
     <my-transition>
-        <span name="content">111</span>
+        <template v-slot:btn-name>
+            哈哈
+        </template>
+        <template v-slot:content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam consequuntur dolore est eum excepturi id illum ipsum iste magni maxime molestiae mollitia nesciunt nostrum officia repellat, sed sunt, vero?
+        </template>
     </my-transition>
 </div>
-</body>
 <script src="./js/vue.js"></script>
 <script>
-    Vue.component("my-transition", {
-        template: `<div>
-        <button @click="show=!show"><template v-slot:btn-name></template></button>
-        <transition name="demo">
-        <div v-if="show"><template v-slot:content></template></div>
+    Vue.component("my-transition",{
+        template:`
+            <div>
+            <button @click="goTransition"><slot name="btn-name"></slot></button>
+            <transition tag="p" name="demo">
+            <div v-if="show"><slot name="content"></slot></div>
 </transition>
-</div>`,
+</div>
+        `,
         data:function(){
             return {
                 show:true
             }
+        },
+        methods:{
+            goTransition(){
+                this.show=!this.show
+            }
         }
     })
     var app = new Vue({
-        el: "#app",
-        data: {}
+        el:"#app",
+        data:{
+
+        }
     })
 </script>
+</body>
 </html>

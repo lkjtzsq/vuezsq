@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mixin</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    const merge = Vue.config.optionMergeStrategies.computed
+    console.log(merge)
+    Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
+        if (!toVal) return fromVal
+        if (!fromVal) return toVal
+        return {
+            getters: merge(toVal.getters, fromVal.getters),
+            state: merge(toVal.state, fromVal.state),
+            actions: merge(toVal.actions, fromVal.actions)
+        }
+    }
+    var app = new Vue({
+        el: "#app"
+    })
+</script>
+</body>
+</html>
