@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画组件封装</title>
+</head>
+<body>
+<div id="app">
+    <my-transition>
+        <span name="content">111</span>
+    </my-transition>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("my-transition", {
+        template: `<div>
+        <button @click="show=!show"><template v-slot:btn-name></template></button>
+        <transition name="demo">
+        <div v-if="show"><template v-slot:content></template></div>
+</transition>
+</div>`,
+        data:function(){
+            return {
+                show:true
+            }
+        }
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {}
+    })
+</script>
+</html>
