@@ -1,3 +1,3 @@
-自定义指令
+渲染函数
 
-https://cn.vuejs.org/v2/guide/custom-directive.html
+https://cn.vuejs.org/v2/guide/render-function.html#%E5%9F%BA%E7%A1%80

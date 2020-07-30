@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令用途</title>
+</head>
+<body>
+<!--<div id="app">-->
+<!--    <div v-pin="100" style="background: #ccc;width:500px;height:100px;color:red;">hello world</div>-->
+<!--</div>-->
+<!--<hr>-->
+<div id="demo">
+    <div>
+        <h1>请选择方向：</h1>
+        <label><span>上</span><input type="radio" value="top" v-model="position.direction"></label>
+        <label><span>下</span><input type="radio" value="bottom" v-model="position.direction"></label>
+        <label><span>左</span><input type="radio" value="left" v-model="position.direction"></label>
+        <label><span>右</span><input type="radio" value="right" v-model="position.direction"></label>
+        <br>
+        <h1>请输入位移大小：</h1>
+        <input type="number" v-model="position.value">
+    </div>
+    <div style="position:relative;width:100%;height:500px;background: yellow;">
+        <div v-newpin:[position.direction]="position.value">fdfd</div>
+    </div>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.directive("pin", {
+        bind: function (el, binding, vnode) {
+            el.style.position = "absolute"
+            el.style.top = binding.value + "px"
+        }
+    })
+    Vue.directive("newpin", {
+        bind: function (el, binding, vnode) {
+            console.log(binding.arg)
+            var positionArr = ["top", "right", "bottom", "left"]
+
+            el.style.position = "absolute"
+            if (positionArr.indexOf(binding.arg)) {
+                el.style[binding.arg] = binding.value + "px"
+            }
+        },
+        update: function (el, binding, vNode) {
+            console.log(1)
+            var positionArr = ["top", "right", "bottom", "left"]
+
+            el.style.position = "absolute"
+            console.log(binding.value)
+            el.style.top=""
+            el.style.bottom=""
+            el.style.left=""
+            el.style.right=""
+            el.style[binding.arg] = binding.value + "px"
+        }
+    })
+    // Vue.directive("newpin", function(el,binding){
+    //     console.log(1)
+    //     var positionArr = ["top", "right", "bottom", "left"]
+    //
+    //     el.style.position = "absolute"
+    //     console.log(binding.value)
+    //     el.style.top=""
+    //     el.style.bottom=""
+    //     el.style.left=""
+    //     el.style.right=""
+    //     el.style[binding.arg] = binding.value + "px"
+    // })
+    // var app = new Vue({
+    //     el: "#app",
+    //     data: {}
+    // })
+    new Vue({
+        el: "#demo",
+        data: {
+            position: {
+                direction: "top",
+                value: "400"
+            }
+        }
+    })
+</script>
+</body>
+</html>
