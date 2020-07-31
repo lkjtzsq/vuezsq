@@ -1,3 +1,5 @@
-渲染函数
+todo：再把组件看一遍。
 
-https://cn.vuejs.org/v2/guide/render-function.html#%E5%9F%BA%E7%A1%80
+进度：渲染函数 & JSX
+
+https://cn.vuejs.org/v2/guide/render-function.html
