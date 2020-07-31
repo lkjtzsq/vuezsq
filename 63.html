@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+</head>
+<body>
+<div id="app">
+    <input type="number" v-model="num">
+    <div v-bin:right="200">{{num}}</div>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.directive("bin",{
+        bind:function(el,binding){
+            el.style.position="absolute" //设置元素定位
+            var directionArr=['top','right','bottom','left']
+            var direction=""
+            if(binding.arg && directionArr.indexOf(binding.arg)!==-1){
+                direction=binding.arg
+                el.style[direction]=binding.value+"px"
+            }
+        },
+        update:function(el,binding){
+            console.log("组件更新前")
+            console.log(el)
+            var directionArr=['top','right','bottom','left']
+            var direction=""
+            if(binding.arg && directionArr.indexOf(binding.arg)!==-1){
+                direction=binding.arg
+                el.style[direction]=binding.value+"px"
+            }
+        },
+        componentUpdated:function(el,biding){
+            console.log('组件更新后')
+            console.log(el)
+        }
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            num:0
+        }
+    })
+</script>
+</body>
+</html>

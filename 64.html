@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换面板</title>
+    <style>
+        ul{
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+        ul li{
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+            background: #ccc;
+            justify-content: center;
+            text-align: center;
+        }
+        ul li.on{
+            background: #00a7f5;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <my-li :class="{on:(item.name==current)}" v-for="item in list" :key="item.name" :item="item" tag="li" @click="show"></my-li>
+    </ul>
+    <my-a v-for="item in newList" :key="item.name" :content="item.content"></my-a>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("my-li",{
+        props:['item'],
+        template:`<li @click="$emit('click',item.name)">{{item.name}}</li>`
+    })
+    Vue.component("my-a",{
+        props:['content'],
+        template:`<div>{{content}}</div>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            current:"america",
+            list:[
+                {
+                    name:"america",
+                    content:"this is america"
+                },
+                {
+                    name:"china",
+                    content:"this is china"
+                },
+                {
+                    name:"korea",
+                    content:"this is korea"
+                }
+            ]
+        },
+        methods:{
+            show(event){
+                console.log(event)
+                this.current=event
+            }
+        },
+        computed:{
+            newList(){
+                var _this=this
+                return this.list.filter(function(item){
+                    console.log(item.name)
+                    return item.name==_this.current
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
