@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<todo-item>
+    <template>11223344</template>
+    <template v-slot:title>ddf</template>
+    <template v-slot:content>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium autem consequuntur distinctio dolore doloremque dolores esse ex harum nam nisi quasi reprehenderit rerum, totam veniam veritatis, vero voluptates voluptatum?</template>
+</todo-item>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        template:`
+            <div>
+            <h1><slot name="title"></slot></h1>
+            <p><slot name="content"></slot></p>
+            <p><slot name="default"></slot></p>
+</div>
+        `,
+        mounted(){
+            console.log(this.$slots)
+        }
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

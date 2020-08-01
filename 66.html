@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.defineProperty</title>
+</head>
+<body>
+<div id="app"></div>
+<input type="text" id="ipt">
+<script>
+    var app = document.getElementById('app');
+    var ipt = document.getElementById('ipt');
+    var val = ""
+    function updateVal(newVal){
+        app.innerHTML=newVal;
+        ipt.value=newVal;
+        val=newVal;
+    }
+    var o = {};
+    Object.defineProperty(o,"name",{
+        set:function(newVal){
+            updateVal(newVal)
+        },
+        get:function(){
+            return val;
+        }
+    })
+    ipt.addEventListener("input",function(r){
+        console.log(this.value)
+        o.name=this.value;
+    })
+    o.name="zhangshaoqiang";
+    console.log(o.name)
+</script>
+</body>
+</html>
