@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <todo-item v-model="value"></todo-item>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        props:['value'],
+        template:`<div><input type="text" :value="value" @input="$emit('input',$event.target.value)"></div>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            value:""
+        }
+    })
+</script>
+</body>
+</html>

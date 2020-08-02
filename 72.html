@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器filter</title>
+</head>
+<body>
+<div id="app">
+<h1>{{message | capitalize | addName(1,2)}}</h1>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.filter('capitalize', function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+    })
+    Vue.filter('addName', function (value,a,b) {
+        return 'name:'+value+a+b
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:'zhangshaoqiang'
+        }
+    })
+</script>
+</body>
+</html>

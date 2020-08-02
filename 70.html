@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <todo-item :num="1">
+      fddfa
+    </todo-item>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    function setAttrId(arr){
+        return arr.map(function(val){
+            return val.children?setAttrId(val.children):val.text
+        }).join('').toLocaleString().replace(/\W+/g,'-').replace(/^-|-$/g,'')
+    }
+    Vue.component("todo-item",{
+        props:{
+            num:{
+                type:Number,
+                required:true
+            }
+        },
+        render(createElement){
+            var id = setAttrId(this.$slots.default)
+            return createElement(
+                'h'+this.num,
+                [createElement('a',{
+                    attrs:{
+                        id:id,
+                        href:'#'+id
+                    }
+                },this.$slots.default)]
+            )
+        },
+        mounted(){
+            console.log(this.$slots)
+        }
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>
