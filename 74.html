@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态改变vue数据</title>
+</head>
+<body>
+<div id="app">
+    <button @click="changeData">改变</button>
+    <ul>
+        <li v-for="(item,index) in list" :key="index">{{item.name}}</li>
+    </ul>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {name:"panel"},
+                {name:"cancel"},
+                {name:"join"},
+                {name:"rooter"}
+            ]
+        },
+        methods:{
+            changeData(){
+                this.$set(this.list,this.list.length,{
+                    name:"zhangshaoqiang"
+                })
+            }
+
+        }
+    })
+    app.list.splice(app.list.length,0,{name:"hhhh"})
+</script>
+</body>
+</html>

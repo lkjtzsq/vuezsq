@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性computed</title>
+</head>
+<body>
+<div id="app">
+    <div>{{Bresult}}</div>
+    <button ref="btn">点击啊</button>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            a: 1
+        },
+        computed: {
+            Aresult() {
+                return this.a * 2
+            },
+            Bresult: {
+                set(val) {
+                    console.log("val:" + val)
+                    console.log("设置")  //31
+
+                    this.a = val * 10
+                },
+                get() {
+                    console.log("获取")
+                    return this.a + 1
+                }
+            }
+        },
+    })
+    app.$refs.btn.onclick = function () {
+        console.log(app.Bresult)
+        app.Bresult++;
+    }
+</script>
+</body>
+</html>

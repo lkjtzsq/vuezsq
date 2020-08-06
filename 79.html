@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="doSomething">做事</button>
+    <div ref="test">{{message}}</div>
+    <todo-item :num="5"></todo-item>
+</div>
+<div id="show"></div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("todo-item",{
+        props:{
+            num:{
+                type:Number,
+                default:1,
+                validator(value){
+                    console.log(value)
+                    return value >1
+                }
+            }
+        },
+        template:`
+            <div><span>当前数字为：</span><span>{{num}}</span></div>
+        `
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "hello world"
+        },
+        methods: {
+            doSomething() {
+                this.message = "jjj"
+                this.$nextTick(function(){
+                    console.log(this.$refs.test.textContent)
+                })
+            }
+        }
+    })
+    var MyVue = Vue.extend({
+        props:['title'],
+        template:`<div>{{title}}</div>`
+    })
+    new MyVue({
+        el:"#show",
+        propsData:{
+            title:"zhangshaoqiang"
+        }
+    })
+</script>
+</body>
+</html>

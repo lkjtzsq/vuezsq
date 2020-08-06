@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态改变vue数据</title>
+</head>
+<body>
+<div id="app">
+    <button @click="changeData">改变数据</button>
+    <div>
+        <p>{{myObj.name}}</p>
+        <p>{{myObj.age}}</p>
+        <p>{{myObj.addr}}</p>
+    </div>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            myObj:{
+                name:"zhangshaoqiang",
+                age:28,
+                addr:"beijing"
+            }
+        },
+        methods:{
+            changeData(){
+                var newObj=Object.assign({},this.myObj,{
+                    name:"chenguanxi",
+                    age:"3300",
+                    addr:"Hong Kong"
+                })
+                this.myObj=newObj
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-custom-web-component></my-custom-web-component>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("my-custom-web-component",{
+        template:`<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi fuga id ipsam ipsum quia tempora temporibus? Atque commodi ex laboriosam non odit perferendis perspiciatis quae qui tempora unde, vitae.</div>`
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[1,2,3,4,5]
+        }
+    })
+    Vue.config.performance=true
+</script>
+</body>
+</html>
