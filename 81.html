@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="changeTitle">改变标题</button>
+    <my-component :title="title" @input="title=$event"></my-component>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            title:"zhangshaoqiang"
+        },
+        methods:{
+            changeTitle(){
+                this.title="chenguanxi"
+            }
+        },
+        components:{
+            "myComponent":{
+                props:['title'],
+                template:`<div><input type="text" :value="title" @input="$emit('input',$event.target.value)">{{title}}</div>`,
+                created(){
+                    console.log(this.$parent)
+                }
+            }
+        },
+        updated(){
+        }
+    })
+</script>
+</body>
+</html>

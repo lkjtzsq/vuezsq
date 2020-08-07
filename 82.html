@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义组件使用v-model</title>
+</head>
+<body>
+<div id="app">
+    <span v-pre>{{ this will not be compiled }}</span>
+<!--    辅导辅导-->
+    <checkbox-item :check-arr="checkArr" val="china" @change="getChange($event,0)"></checkbox-item>
+    <checkbox-item :check-arr="checkArr" val="america" @change="getChange($event,1)"></checkbox-item>
+</div>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component("checkbox-item",{
+        props:['checkArr','val'],
+        data:function(){
+          return {
+              carr:this.checkArr
+          }
+        },
+        template:`<input type="checkbox" v-model="carr" :value="val" @change="$emit('change',$event.target.checked)">`
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            checkArr:[]
+        },
+        comments:true,
+        methods:{
+            getChange(value,key){
+                this.checkArr[key]=value
+            }
+        }
+    })
+    app.$watch(
+        function () {
+            // 表达式 `this.a + this.b` 每次得出一个不同的结果时
+            // 处理函数都会被调用。
+            // 这就像监听一个未被定义的计算属性
+            console.log(1)
+            return this.a + this.b
+        },
+        function (newVal, oldVal) {
+            // 做点什么
+            console.log(1)
+        }
+    )
+</script>
+</body>
+</html>

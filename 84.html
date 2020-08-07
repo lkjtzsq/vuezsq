@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <china></china>
+        <router-link to="/china/1/addr/5">China</router-link>
+        <router-link to="/america/5">America</router-link>
+        <router-link to="/user-fdfdf">我就是这么任性哈哈</router-link>
+    </div>
+    <div>
+        <router-view></router-view>
+    </div>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var China = {
+        name:"China",
+        template: '<div @click="doThis">{{name}}</div>',
+        data:function(){
+            return {
+                name:"China"
+            }
+        },
+        methods:{
+            doThis(){
+                this.name= "dkjfdkjf"
+            }
+        },
+        created(){
+        },
+        watch:{
+            $route(to,from){
+                console.log(to)
+                console.log(from)
+            }
+        }
+    }
+    var America = {
+        template: '<div>America{{$route.params.id}}</div>'
+    }
+    var AnyComponent = {
+        template:`<div>我就是这么任性</div>`
+    }
+    var router = new VueRouter({
+        routes: [
+            {
+                path: '/china/:id/addr/:addr',
+                component: China
+            },
+            {
+                path: '/america/:id',
+                component: America
+            },
+            {
+                path:'/user-*',
+                component: AnyComponent
+            }
+        ]
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {},
+        router: router,
+        components:{
+            China
+        }
+    })
+</script>
+</body>
+</html>
