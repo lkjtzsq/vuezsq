@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Router嵌套</title>
+</head>
+<body>
+<div id="app">
+    <router-link to="/user/5">哈哈哈</router-link>
+    <router-link to="/login">login</router-link>
+    <hr>
+    <router-view class="container"></router-view>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var UserComponent = {
+        template: `
+        <div>
+        <h1>{{$route.params.id}}</h1>
+        <router-link to="/a">2323</router-link>
+</div>
+        `
+    }
+    var ComponentA = {
+        template: `
+        <div>
+        <h1>你好哦A</h1>
+</div>
+        `
+    }
+    var LoginComponent = {
+        template: `
+           <div>我是组件Login</div>
+        `
+    }
+    var routes = [
+        {
+            name: 'user',
+            path: '/user/:id',
+            component: UserComponent,
+            children: []
+        },
+        {
+            name: 'login',
+            path: '/login',
+            component: LoginComponent
+        },
+        {
+            name: 'a',
+            path: '/a',
+            component: ComponentA
+        }
+    ]
+    var router = new VueRouter({
+        routes
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {},
+        router,
+        components: {
+            UserComponent,
+            ComponentA,
+            LoginComponent
+        },
+        methods: {
+            toLogin() {
+                this.$router.push({name: 'login', params: {id: 1}})
+            }
+        }
+    })
+</script>
+</body>
+</html>

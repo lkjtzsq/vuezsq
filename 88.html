@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Router嵌套命名视图</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <demo-header></demo-header>
+        <demo-user-settings></demo-user-settings>
+        <demo-nav></demo-nav>
+        <router-view></router-view>
+    </div>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var DemoHeader = {
+        template: '<h1>Nested Named Views</h1>'
+    }
+    var DemoUserSettings = {
+        template: '<h3>User Settings</h3>'
+    }
+    var DemoNav = {
+        template: '<div><p><router-link to="/settings/emails">emails</router-link></p><p><router-link to="/settings/profile">profile</router-link></p></div>'
+    }
+    var DemoEmail = {
+        template: '<div>Email Subscriptions</div>'
+    }
+    var DemoEdit = {
+        template: '<div>Edit your profile</div>'
+    }
+    var DemoPreview = {
+        template: '<div>Preview of your profile</div>'
+    }
+    var DemoProfile = {
+        template:'<div><DemoEdit></DemoEdit><DemoPreview></DemoPreview></div>',
+        components:{
+            DemoEdit,
+            DemoPreview
+        }
+    }
+    var DemoSettings= {
+        template:`
+            <div>
+                11
+</div>
+        `
+    }
+    var routes = [
+        {
+            path:'/settings',
+            component:{
+                DemoProfile
+            },
+            children:[
+                {
+                    path: 'emails',
+                    component: DemoEmail
+                },
+                {
+                    path: 'profile',
+                    components:{
+                      default:DemoEdit,
+                      preview:DemoPreview
+                    }
+                }
+            ]
+        }
+    ]
+    var router = new VueRouter({
+        routes
+    })
+    router.push('/settings/emails')
+    var app = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            DemoHeader,
+            DemoUserSettings,
+            DemoNav,
+            DemoEmail,
+            DemoProfile
+        },
+        router
+    })
+</script>
+</body>
+</html>

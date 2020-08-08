@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-router></my-router>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var MyNav = {
+        template: `<ul>
+        <li>
+            <router-link to="/settings/a">A</router-link>
+        </li>
+        <li>
+            <router-link to="/settings/b">B</router-link>
+        </li>
+    </ul>`
+    }
+    var MyRouter = {
+        template: `
+            <div>
+                <router-view class="container"></router-view>
+            </div>
+        `,
+        components: {
+            MyNav
+        }
+
+    }
+    var MyA = {
+        template: `<div>this is panel  A</div>`
+    }
+    var MyB = {
+        template: `<div>
+this is panel B,
+</div>`,
+        components:{
+            MyC,
+            MyD
+        }
+    }
+    var MyC = {
+        template: `<div>
+this is panel C
+</div>`
+    }
+    var MyD = {
+        template: `<div>
+this is panel D
+</div>`
+    }
+    var MyE = {
+        template: `<div>
+this is panel E
+</div>`
+    }
+    var Settings = {
+        template:`<div>
+            <MyNav></MyNav>
+            <h1>This is Settings</h1>
+            <router-view></router-view>
+            <router-view name="c"></router-view>
+            <router-view name="d"></router-view>
+        </div>`,
+        components: {
+            MyA,
+            MyB,
+            MyNav
+        }
+    }
+    var routes = [
+        {
+            path: '/settings',
+            component: Settings,
+            children: [
+                {
+                    path:'a',
+                    component:MyA
+                },
+                {
+                    path:'b',
+                    components:{
+                        c:MyC,
+                        d:MyD
+                    }
+                }
+            ]
+        },
+        {
+            path: '/settings/e',
+            component: MyE,
+
+        }
+    ]
+    var router = new VueRouter({routes})
+    var app = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            MyRouter
+        },
+        router
+    })
+</script>
+</body>
+</html>
