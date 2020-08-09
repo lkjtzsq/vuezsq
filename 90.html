@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Router域名重定向</title>
+</head>
+<body>
+<div id="app">
+    <router-link to="/a">A</router-link>
+    <router-link to="/b">B</router-link>
+    <hr>
+    <router-view></router-view>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var componentA = {
+        template: `<div>Component A</div>`
+    }
+    var componentB = {
+        template: `<div>Component B</div>`
+    }
+    var routes = [
+        {
+            path: '/a',
+            component: componentA,
+            alias: '/b'
+        }
+
+    ]
+    var router = new VueRouter({routes})
+    router.push('/a')
+    var app = new Vue({
+        el: "#app",
+        data: {},
+        router
+    })
+</script>
+</body>
+</html>

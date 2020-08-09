@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{height: 1000px;}
+        #app{
+            padding-top: 500px;
+        }
+        .demo-enter,.demo-leave-to{
+            opacity: .5;
+        }
+        .demo-enter-active,.demo-leave-active{
+            transition: all .5s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-link to="/a/5/b/beijing">A链接</router-link>
+    <router-link to="/b">B链接</router-link>
+    <transition name="demo" mode="out-in">
+        <router-view></router-view>
+    </transition>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var ComponentA = {
+        props: ['query'],
+        template: '<div>111</div>',
+        // beforeRouteLeave (to, from, next) {
+        //     const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+        //     if (answer) {
+        //         next()
+        //     } else {
+        //         next(false)
+        //     }
+        // }
+    }
+    var ComponentB = {
+        template:`<div>Component B</div>`
+    }
+    var routes = [
+        {
+            path: '/a/:id/b/:addr',
+            component: ComponentA
+        },
+        {
+            path: '/b',
+            component: ComponentB
+        }
+
+    ]
+    const Foo = function(){
+        import './Foo.vue'
+    }
+    var router = new VueRouter({
+        routes,
+        scrollBehavior (to, from, savedPosition) {
+            return {
+                y:0
+            }
+        }
+    })
+    router.afterEach(function(to,from){
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {},
+        router,
+        watch:{
+            $route(to,form){
+                console.log(1)
+            }
+        }
+    })
+</script>
+</body>
+</html>
